@@ -54,12 +54,6 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao {
 
     @Override
     public Category getById(int categoryId) {
-        // get category by id
-        return null;
-    }
-
-    @Override
-    public Category create(Category category) {
         Category cat = new Category();
 
         try(Connection c = ds.getConnection();
@@ -71,7 +65,7 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao {
                 WHERE 
                     category_id = ?
                 """)){
-            q.setInt(1,category.getCategoryId());
+            q.setInt(1,categoryId);
 
             ResultSet r = q.executeQuery();
 
@@ -83,9 +77,14 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             }
         }catch(SQLException e){
-            System.out.println("Error getting category with id: " + category.getCategoryId());
+            System.out.println("Error getting category with id: " + categoryId);
         }
         return cat;
+    }
+
+    @Override
+    public Category create(Category category) {
+
 
     }
 
