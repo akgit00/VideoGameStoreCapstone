@@ -8,10 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
@@ -108,14 +105,14 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao {
                 UPDATE
                     categories
                 SET
-                    Category_ID = COALESCE(?, Category_ID)
-                    Name = COALESCE(?, Name)
+                    Category_ID = COALESCE(?, Category_ID),
+                    Name = COALESCE(?, Name),
                     Description = COALESCE(?, Description)                    
                 WHERE
                     Category_ID = ?
                 """)){
             if(category.getCategoryId() == null || category.getCategoryId() == 0){
-                q.setNull(1,category.getCategoryId());
+                q.setNull(1, Types.INTEGER);
             }else{
                 q.setInt(1, category.getCategoryId());
             }
