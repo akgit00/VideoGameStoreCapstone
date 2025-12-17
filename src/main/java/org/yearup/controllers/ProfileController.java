@@ -17,3 +17,28 @@ public class ProfileController {
 
     private UserDao userDao;
     private ProfileDao profileDao;
+
+    @Autowired
+    public ProfileController(UserDao userDao, ProfileDao profileDao) {
+        this.userDao = userDao;
+        this.profileDao = profileDao;
+    }
+
+    @GetMapping("")
+    public Profile getProfile(Principal principal){
+        String userName = principal.getName();
+        User user = userDao.getByUserName(userName);
+        int userId = user.getId();
+
+        return profileDao.getProfileByUserID(userId);
+    }
+
+    @PutMapping("")
+    public Profile updateProfile(Principal principal, @RequestBody Profile profile){
+        String userName = principal.getName();
+        User user = userDao.getByUserName(userName);
+        int userId = user.getId();
+
+        return profileDao.update(userId, profile);
+    }
+}
