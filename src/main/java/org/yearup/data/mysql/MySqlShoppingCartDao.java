@@ -154,20 +154,4 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
             System.out.println("Error editing cart: " + e);
         }
     }
-
-    //this is a helper method to convert a database ResultSet row into a Product object
-    protected static Product mapRow(ResultSet row) throws SQLException {
-        int productId = row.getInt("product_id");
-        String name = row.getString("name");
-        BigDecimal price = row.getBigDecimal("price");
-        int categoryId = row.getInt("category_id");
-        String description = row.getString("description");
-        String subCategory = row.getString("subcategory");
-        int stock = row.getInt("stock");
-        boolean isFeatured = row.getBoolean("featured");
-        String imageUrl = row.getString("image_url");
-
-        //return a fully constructed Product
-        return new Product(productId, name, price, categoryId, description, subCategory, stock, isFeatured, imageUrl);
-    }
 }
