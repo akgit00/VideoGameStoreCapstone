@@ -19,11 +19,12 @@ public class Order {
     private String city;
     private String state;
     private String zip;
-    private BigDecimal amount;
+    private BigDecimal total;
 
-    public Order() {}
+    public Order() {
+    }
 
-    public Order(Integer orderID, Integer userID, LocalDate date, String address, String city, String state, String zip, BigDecimal amount) {
+    public Order(Integer orderID, Integer userID, LocalDate date, String address, String city, String state, String zip, BigDecimal total) {
         this.orderID = orderID;
         this.userID = userID;
         this.date = date;
@@ -31,12 +32,13 @@ public class Order {
         this.city = city;
         this.state = state;
         this.zip = zip;
-        this.amount = amount;
+        this.total = total;
     }
 
     public Integer getOrderID() {
         return orderID;
     }
+
     public void setOrderID(Integer orderID) {
         this.orderID = orderID;
     }
@@ -45,6 +47,7 @@ public class Order {
     public Integer getUserID() {
         return userID;
     }
+
     public void setUserID(Integer userID) {
         this.userID = userID;
     }
@@ -53,6 +56,7 @@ public class Order {
     public LocalDate getDate() {
         return date;
     }
+
     public void setDate(LocalDate date) {
         this.date = date;
     }
@@ -61,6 +65,7 @@ public class Order {
     public String getAddress() {
         return address;
     }
+
     public void setAddress(String address) {
         this.address = address;
     }
@@ -69,6 +74,7 @@ public class Order {
     public String getCity() {
         return city;
     }
+
     public void setCity(String city) {
         this.city = city;
     }
@@ -77,6 +83,7 @@ public class Order {
     public String getState() {
         return state;
     }
+
     public void setState(String state) {
         this.state = state;
     }
@@ -85,15 +92,16 @@ public class Order {
     public String getZip() {
         return zip;
     }
+
     public void setZip(String zip) {
         this.zip = zip;
     }
 
 
-    public BigDecimal getAmount() {
-        return amount;
+    public BigDecimal getTotal() {
+        return total;
     }
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
+    public void setTotal (BigDecimal total){
+        this.total = total;
     }
 }

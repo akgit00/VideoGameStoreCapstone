@@ -25,4 +25,29 @@ public class CheckoutService {
         this.productDao = productDao;
         this.profileDao = profileDao;
     }
+
+    @Transactional
+    public BigDecimal checkout(int userId){
+
+
+        ShoppingCart cart = shoppingCartDao.getByUserId(userId);
+
+
+        Profile profile = profileDao.getProfileByUserID(userId);
+
+
+        orderDao.createOrder(profile,cart);
+
+
+        cart.getItems().values().forEach(item -> {
+            productDao.updateStock(item.getProductId(), item.getQuantity());
+            orderDao.addOrderToDatabase(userId, item);
+        });
+
+
+        shoppingCartDao.clearCart(userId);
+
+
+        return cart.getTotal();
+    }
 }
