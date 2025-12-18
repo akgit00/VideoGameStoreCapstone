@@ -139,6 +139,3 @@ public class ShoppingCartController
         return receipt;
     }
     }
-
-
-}
